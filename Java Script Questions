@@ -1,0 +1,2181 @@
+======================
+Java Script Questions:
+======================
+
+1. What are Cookies?
+Ans:
+Cookies are data, stored in small text files, on your computer.
+cookies is the most efficient method of remembering and tracking preferences, purchases, commissions, and other information required for better visitor experience or site statistics
+When a web server has sent a web page to a browser, the connection is shut down, and the server forgets everything about the user.
+Cookies were invented to solve the problem "how to remember information about the user":
+When a user visits a web page, his/her name can be stored in a cookie.
+Next time the user visits the page, the cookie "remembers" his/her name.
+
+
+2. SessionStorage
+Ans:
+The sessionStorage object stores data only for a session, meaning that the data is stored until the browser (or tab) is closed.
+Data is never transferred to the server.
+Storage limit is larger than a cookie (at least 5MB).
+
+
+3. LocalStorage
+Ans:
+Stores data with no expiration date, and gets cleared only through JavaScript, or clearing the Browser cache / Locally Stored Data
+Storage limit is the maximum amongst the three
+
+
+4. Cookies and Session and Localstorage (like on tab close which of value will be deleted)
+Ans:
+LocalStorage - it still remains in you browsers memory until you cleared it
+Cookies - Persist uniformly across browser tabs and even across different instances of the same browser’s
+SessionStorage - Deleted when the user ends the session by closing browser or tab
+
+
+5. Share sessionStorage between tabs using localStorage
+Ans:
+The way I solved it is by using localStorage events.
+When a user opens a new tab, we first ask any other tab that is opened if he already have the sessionStorage for us. If any other tab is opened it’ll send us the sessionStorage through localStorage event, we’ll duplicate that into the sessionStorage.
+
+
+6. Closure (data hiding)
+Ans:
+Closures are frequently used in JavaScript for object data privacy.
+Closures are used in JavaScript to implement encapsulation i.e. data hiding
+a closure is simply a function defined within another function. 
+the inner function has access to the outer function’s variables and parameters.
+A closure is an inner function that has access to the outer (enclosing) function’s variables—scope chain. The closure has three scope chains: it has access to its own scope (variables defined between its curly brackets), it has access to the outer function’s variables, and it has access to th global variables.
+able to access local vaiable scope to outside
+var dwightSalary = (function() {
+    var salary = 60000;
+    function changeBy(amount) {
+        salary += amount;
+    }
+    return {
+        raise: function() {
+            changeBy(5000);
+        },
+        lower: function() {
+            changeBy(-5000);
+        },
+        currentAmount: function() {
+            return salary;
+        }
+    }; 
+})();
+
+alert(dwightSalary.currentAmount()); // $60,000
+dwightSalary.raise();
+alert(dwightSalary.currentAmount()); // $65,000
+dwightSalary.lower();
+dwightSalary.lower();
+alert(dwightSalary.currentAmount()); // $55,000
+dwightSalary.changeBy(10000) // TypeError: undefined is not a function
+
+
+7. what is variable hoisting?
+Ans:
+all undeclared variables are global variables.
+Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution.
+it is simply a process of the JavaScript compiler reading them first in order to create space in memory for them)
+function codeHoist(){ 
+    a = 10; 
+    let b = 50; 
+} 
+codeHoist(); 
+  
+console.log(a); // 10 
+console.log(b); // ReferenceError : b is not defined 
+
+
+8. IS Javascript is synchronous or asynchronous ?
+Ans:
+JavaScript is always synchronous.
+
+
+9. Is js singlethreded or multithreaded.
+Ans:
+JavaScript is always single-threaded.
+
+
+10. How to create js multithreaded?
+Ans:
+Using Web Workers
+
+
+11. What is Web Worker?
+Ans:
+A web worker is a JavaScript program running on a different thread, in parallel with main thread.
+Web Workers are Javascript scripts executed from an HTML page that runs on a background thread away from the main execution thread. Data is sent between the main thread and workers through messages. Since these workers run on a separate thread than the main execution thread, you can utilize web workers to run process intensive tasks from the browser without creating blocking instances.
+var worker = new Worker('worker.js');
+worker.postMessage('Happy Birthday');
+worker.addEventListener('message', function(e) {
+  console.log(e.data);
+}
+
+12. Random Ques.
+Ans:
+typeof(null) == typeof(undefined) -> False
+typeof(null) === typeof(undefined) -> False
+typeof(NULL) === typeof(UNDEFINED) -> True
+typeof(NULL) == typeof(UNDEFINED) -> True
+null === undefined -> False
+null == undefined -> True
+typeof(null) -> object
+typeof(undefined) -> undefined
+
+
+13. Is JavaScript case sensitive? Give an example?
+Ans:
+JavaScript is a case-sensitive language.
+while - ok
+WHILE - Not ok
+
+
+14. What are JavaScript Data Types?
+Ans:
+String
+Number
+Boolean
+Undefined
+Null
+Object
+Arrays
+
+
+15. Please explain NEGATIVE_INFINITY in JavaScript?
+Ans:
+The negative infinity in JavaScript is a constant value which is used to represent a value which is the lowest available. This means that no other number is lesser than this value. It can be generated using a self-made function or by an arithmetic operation.
+Any value that goes over the maximum value is available in JavaScript gets changed to negative infinity.
+
+
+16. double and triple equal operator?
+Ans:
+When using triple equals === in JavaScript, we are testing for strict equality. This means both the type and the value we are comparing have to be the same.
+77 === '77' - False
+
+When using double equals in JavaScript we are testing for loose equality.
+77 == '77' - True
+
+
+17. Modifying a copy of a JavaScript object is causing the original object to change ?
+Ans:
+In JavaScript objects are passed and assigned by reference (more accurately the value of a reference), so tempMyObj and myObj are both references to the same object.
+For avoiding this we use Cloaning in js.
+
+
+18. What is cloaning in js?
+Cloning in javascript is nothing but copying an object properties to another object so as to avoid creation of an object that already exists.
+There are a few ways to clone a javascript object.
+
+1) Iterating through each property and copy them to a new object.
+
+2) Using JSON method.
+   const sourceObject = {name:"salman", age:23, salary:25000};
+   let requiredObj = {};
+   requiredObj = JSON.parse(JSON.stringify(sourceObject));
+
+3) Using object.assign() method.
+   const sourceObject = {name:"salman", age:23, salary:25000};
+   let requiredObj = {};
+   requiredObj = Object.assign({}, sourceObject);
+
+
+19. What is JavaScript?
+Ans:
+JavaScript is a client-side scripting or programming language that allows you to implement complex features on web pages.
+
+
+20. What is the use of isNaN function?
+Ans:
+The isNaN() function determines whether a value is an illegal number.
+This function returns true if the value equates to NaN. Otherwise it returns false.
+
+
+21. What are undeclared and undefined variables?
+Ans:
+undefined variables are those that are not assigned any value but declared in the program. if we try to read the value, an error message "undefined" is displayed. 
+Eq- var a;
+console.log(a); - > undefined
+
+undeclared variables are those that are not declared in the program. But if undeclared variables are assigned some value then implicit declaration is done .
+Eq- console.log(a); - > undeclared
+
+
+22. Does JavaScript support automatic type conversion?
+Ans:
+Yes
+Eq- var a = 10;
+automatically typeOf a will be Number;
+
+
+23. What is the difference between ViewState and SessionState?
+Ans:
+SessionState: It can be used to store information that you wish to access on different web pages.
+Session state value availability is across all pages available in a user session.
+It's a way to track what the user is doing on the site.. across multiple pages...amid the statelessness of the Web. e.g. the contents of a particular user's shopping cart is session data. Cookies can be used for session state
+
+ViewState It can be used to store information that you wish to access from same web page.
+View state can only be visible from a single page and not multiple pages.
+ViewState Information is stored on the client’s end only.
+ViewState values are lost/cleared when new page is loaded.
+It is used to maintain the user's illusion that the page remembers what he did on it the last time
+
+
+24. spread operator, (three dot wala) operator
+Ans:
+The … spread operator is useful for many different routine tasks in JavaScript, including the following:
+Copying an array
+Concatenating or combining arrays
+Using Math functions
+Using an array as arguments
+Adding an item to a list
+Adding to state in React
+Combining objects
+Converting NodeList to an array
+Eq.
+Math.max(1,3,5) // 5
+Math.max([1,3,5]) // NaN
+Math.max(...[1,3,5]) // 5
+
+
+25. How will you remove duplicates from array js?
+Ans:
+1. Using Set
+Var arr = [1,2,3,1,2];
+var unique = new Set(arr); -> [1,2,3]
+
+2.Using indexOf operator
+arr.filter((item, index) => arr.indexOf(item) != index);
+
+3. Using reduce
+
+
+26. Agile
+Ans:
+1.Scrum call(standup meeting).
+2.Sprint planning(1 week or 2 week ) depends on requirement.
+3.Story writing(should be independent, negotiable), story has tasks, (like create ui or api integration), after complete assign tester if bug then tester will assign back then resolve then Assign back to tester if no bug close the story.
+4.Backlog grooming(give story point).
+5.Retrospective meeting (what you did wrong or right during sprint).
+
+
+27. CI CD Pipeline
+Ans:
+CI CD Pipeline implementation or the Continuous Integration/Continuous Deployment software is the backbone of the modern DevOps environment. 
+
+CI/CD bridges the gap between development and operations teams by automating build, test and deployment of applications. In this blog, we will know What is CI CD pipeline and how it works. 
+CI stands for Continuous Integration and CD stands for Continuous Delivery and Continuous Deployment. You can think of it as a process which is similar to a software development lifecycle. 
+Jenkins – The Ultimate CI Tool and Its Importance in CI CD Pipeline
+
+
+28. backup and disaster recovery?
+Ans:
+1. A recovery time objective (RTO), which is the maximum acceptable length of time that your application can be offline. 
+2. A recovery point objective(RPO), which is the maximum acceptable length of time during which data might be lost from your application due to a major incident. 
+3. Smaller RTO and RPO values often mean greater complexity 
+
+
+29. Web packs?
+Ans:
+Webpack is a module bundler. (webpack.config.json) , define our test for js, jsx, css, html
+
+
+30. Babel?
+Ans:
+Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.  (babelrc.json)
+
+
+31. Es Lint?
+Ans:
+Es Lint used to find problematic patterns or code that doesn't adhere to certain style guidelines. (eslintrc.json)
+
+For these changes -> Make change in pacjage.json file in script → build section  
+
+
+32. tag vs element?
+Ans:
+<p> and </p> are called HTML tags
+<p>This is the content</p> : This complete thing is called a HTML element
+
+
+33. Function and function as expression ?
+Ans:
+They're actually really similar. How you call them is exactly the same.The difference lies in how the browser loads them into the execution context.
+
+Function declarations load before any code is executed.
+
+Function expressions load only when the interpreter reaches that line of code.
+
+So if you try to call a function expression before it's loaded, you'll get an error! If you call a function declaration instead, it'll always work, because no code can be called until all declarations are loaded.
+
+Example: Function Expression
+alert(foo()); // ERROR! foo wasn't loaded yet
+var foo = function() { return 5; } 
+
+Example: Function Declaration
+alert(foo()); // Alerts 5. Declarations are loaded before any code can run.
+function foo() { return 5; }
+
+
+33. slice, splice method ?
+Ans:
+Slice-
+The slice() method returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). The original array will not be modified.
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2));
+// expected output: Array ["camel", "duck", "elephant"]
+console.log(animals.slice(2, 4));
+// expected output: Array ["camel", "duck"]
+console.log(animals.slice(1, 5));
+// expected output: Array ["bison", "camel", "duck", "elephant"]
+
+Splice
+The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements.
+var months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb');
+// inserts at 1st index position
+// expected output: Array ['Jan', 'Feb', 'March', 'April', 'June']
+
+months.splice(4, 1, 'May');
+// replaces 1 element at 4th index
+// expected output: Array ['Jan', 'Feb', 'March', 'April', 'May']
+
+
+34. Event bubling
+Ans:
+Event Bubbling is the event starts from the deepest element or target element to its parents, then all its ancestors which are on the way to bottom to top.
+
+Stop Event Bubbling :
+If you want to stop the event bubbling, this can be achieved by the use of the event.stopPropagation() method. If you want to stop the event flow from event target to top element in DOM, event.stopPropagation() method stops the event to travel to the bottom to top.
+
+
+35. Event capture
+Ans:
+Event Capturing is the event starts from top element to target element. Modern browser doesn’t support event capturing by default
+Eq.
+<div id="parent">
+  <button id="child">Child</button>
+</div>
+var parent = document.querySelector('#parent');
+parent.addEventListener('click', function(){
+  console.log("Parent clicked");
+},true);
+
+
+36. How to make two parallel call together in js?
+Ans:
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise(function(resolve, reject) {
+  setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+  console.log(values);
+});
+
+
+37. Call Vs Apply
+Ans:
+Call and apply are very similar: both invoke the function they are called on, and take a ‘this’/'Context' argument as their first argument. 
+call() passes all arguments after the first one on to the invoked function.
+Eq.
+let customer1 = { name: 'Leo', email: 'leo@gmail.com' };
+let customer2 = { name: 'Nat', email: 'nat@hotmail.com' };
+
+function greeting(text) {
+    console.log(`${text} ${this.name}`);
+}
+greeting.call(customer1, 'Hello'); // Hello Leo
+greeting.call(customer2, 'Hello'); // Hello Nat
+
+apply() takes an array as its second argument and passes the members of that array as arguments.
+Eq. 
+let customer1 = { name: 'Leo', email: 'leo@gmail.com' };
+let customer2 = { name: 'Nat', email: 'nat@hotmail.com' };
+function greeting(text, text2) {
+   console.log(`${text} ${this.name}, ${text2}`);
+}
+greeting.apply(customer1, ['Hello', 'How are you?']); // output Hello Leo, How are you?
+greeting.apply(customer2, ['Hello', 'How are you?']); // output Hello Natm How are you?
+
+
+38. settimeout concept with 0 miliseconf delay
+Ans:
+Zero delay doesn't actually mean the call back will fire-off after zero milliseconds. Calling setTimeout with a delay of 0 (zero) milliseconds doesn't execute the callback function after the given interval.
+
+The execution depends on the number of waiting tasks in the queue. In the example below, the message ''this is just a message'' will be written to the console before the message in the callback gets processed, because the delay is the minimum time required for the runtime to process the request (not a guaranteed time).
+
+setTimeout(function cb() {
+  console.log('Callback 1: this is a msg from call back'); -> Second
+}); // has a default time value of 0
+
+console.log('this is just a message'); -> First
+
+setTimeout(function cb1() {
+  console.log('Callback 2: this is a msg from call back'); -> Three
+}, 0);
+
+
+39. How to make js Asynchronous
+Ans:
+1. Use promises
+2. Use Callback
+3. Async/Await
+
+
+40. what is callback hell ?
+Ans:
+Nesting of async calls.
+getData(function(x){
+    getMoreData(x, function(y){
+        getMoreData(y, function(z){ 
+            ...
+        });
+    });
+});
+
+
+41. what is js callback ?
+Ans:
+it points to a function that will be executed once that result is ready. This function is what we call a “callback function”. Meanwhile, JavaScript continues its normal execution of code. 
+Callbacks are okay for single asynchronous operations
+
+function handleResponse(error, response, body){  }
+request('https://www.somepage.com', handleResponse);
+
+
+42. what is js promises ?
+Ans:
+A promise is an object that wraps an asynchronous operation and notifies when it’s done. This sounds exactly like callbacks, but the important differences are in the usage of Promises. Instead of providing a callback, a promise has its own methods which you call to tell the promise what will happen when it is successful or when it fails. The methods a promise provides are “then(…)” 
+You may only handle one asynchronous operation with each promise. That’s fine for sending HTTP requests and reacting to responses for example. It’s not really a great solution if you want to handle asynchronous operations which don’t end after one “value”
+
+someAsyncOperation(someParams) .then(function(result){     
+  // Do something with the result 
+}) .catch(function(error){     
+  // Handle error 
+});
+
+
+43. what is js async/await ?
+Ans:
+operations in JavaScript. It gives you two new keywords to use in your code: “async” and “await”. Async is for declaring that a function will handle asynchronous operations and await is used to declare that we want to “await” the result of an asynchronous operation inside a function that has the async keyword.
+
+There’s one thing which can be annoying when using both promises or observables: You’re writing code “in block”, not like you normally do. Wouldn’t it be nice if you could write async code just like you write synchronous one?
+
+async function getSomeAsyncData(value){     
+  const result = await fetchTheData(someUrl, value);     
+  return result; 
+}
+
+
+44. what is js Observable?
+Ans:
+an asynchronous operation which might be run multiple times? Think about user events. They’re certainly asynchronous as you can’t block your code to wait for them to occur. You can’t really handle them with promises though. You could handle one event (e.g. click on a button) but thereafter your promise is resolved and can’t react to further clicks.
+
+You’re working with streams of data instead of single values
+
+You got an amazing toolset of operators at your disposal to manipulate, transform and work with your async data
+
+const button = document.querySelector('button')
+const observable = Rx.Observable.fromEvent(button, 'click')
+observable.subscribe(
+  event => {
+    console.log(event.target)
+  },
+  error => {
+    console.log(error)
+  },
+  () => {
+    console.log('Completed!')
+  } // <- Gets executed once the observable completes - it doesn't receive any argument, no data
+)
+
+
+
+45. Callback vs promises vs Observable vs async/await?
+Ans:
+We had a look at four different approaches:-Callbacks with the danger of entering callback hell -Promises to escape callback hell-Observables to handle streams of data and apply operator magic -async/ await to write “synchronous” code with promises
+
+Which approach should you use?
+Use Callbacks if you got no other choice or only handle one async operation. The code will then still be perfectly manageable and understandable. Callback functions aren’t bad per se - there just exist better alternatives in many cases.
+
+One such case are multiple chained (or dependent) asynchronous operations. You quickly enter callback hell when trying to use callbacks in such a situation. Promises are a great tool to handle your operations in a structured and predictable way.
+
+In all cases where you use promises, you might also use observables. It’s not strictly better but if there’s an operator which makes your life easier or you simply love observables, there’s no downside in using them. There’s a strong argument to be made for observables once you handle data streams, i.e. operations where you’re not just getting back one single value. Promises can’t handle such situations (easily).
+
+Finally, async/ await is an awesome tool for cases where you don’t really want or need to use observables but still want to use promises. You can write “synchronous” code with async/ await and handle your promise chains even easier.
+
+Ultimately, it of course also comes down to your taste and the environment you’re working in. For everything but callbacks, you’ll probably need a transpiler and/ or polyfill. If you only target environments where ES6 or even ES8 is supported natively, that’s not true anymore. For observables, you’ll always need the RxJS library - that of course means that you’ll increase the codebase you ship in the end. Might not be worth it if you’re only handling trivial cases.
+
+
+46. es6 feacture
+Ans:
+1.Default Parameters in ES6
+function f(x, y=12) {
+  // y is 12 if not passed (or passed as undefined)
+  return x + y;
+}
+
+2.Template Literals in ES6
+`string text ${expression} string text`
+
+3.Multi-line Strings in ES6
+`string text line 1
+ string text line 2`
+
+4.Destructuring Assignment in ES6
+Destructuring is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables. That is, we can extract data from arrays and objects and assign them to variables.
+It’s called “destructuring assignment,” because it “destructurizes” by copying items into variables. But the array itself is not modified.
+
+Eq:ES5 Version
+  var introduction = ["Hello", "I" , "am", "Sarah"];
+  var greeting = introduction[0];
+  var name = introduction[3];
+
+  console.log(greeting);//"Hello"
+  console.log(name);//"Sarah"
+
+Eq:ES6 Version
+  var introduction = ["Hello", "I" , "am", "Sarah"];
+  var [greeting, pronoun] = introduction;
+
+  console.log(greeting);//"Hello"
+  console.log(pronoun);//"I"
+
+
+5.Enhanced Object Literals in ES6
+ES6 makes the declaring of object literals concise and thus easier. Three major ways it does this are :
+It provides a shorthand syntax for initializing properties from variables.
+It provides a shorthand syntax for defining function methods.
+Eq:ES5 Version
+  function getLaptop(make, model, year) {
+      return {
+          make: make,
+          model: model,
+          year: year
+      }
+  }
+  getLaptop("Apple", "MacBook", "2015");// {make: "Apple", model: "MacBook", year: "2015"}
+
+Eq:ES6 Version
+  function getLaptop(make, model, year) {
+      return {
+          make,
+          model,
+          year
+      }
+  }
+  getLaptop("Apple", "MacBook", "2015"); // {make: "Apple", model: "MacBook", year: "2015"}
+
+
+6.Arrow Functions in ES6
+Arrow functions shine best with anything that requires this to be bound to the context, and not the function itself.
+In JavaScript, one aspect of creating a function inside a method is difficult to get right: handling the special variable this. ECMAScript.next will make things easy by introducing two constructs: arrow functions and method definitions.
+
+Before arrow functions, every new function defined its own this value based on how the function was called:
+
+Unlike a regular function, an arrow function does not bind this. Instead, this is bound lexically (i.e. this keeps its meaning from its original context).
+
+Eq. ES5
+    var jane = {
+        name: "Jane",
+        
+        logHello: function (friends) {
+            var that = this;  // (*)
+            friends.forEach(function (friend) {
+                console.log(that.name + " says hello to " + friend)
+            });
+        }
+    }
+
+    OR
+
+    var jane = {
+        name: "Jane",
+        
+        logHello: function (friends) {
+            friends.forEach(function (friend) {
+                console.log(this.name + " says hello to " + friend)
+            }.bind(this));
+        }
+    }
+
+Eq. ES6
+    let jane = {
+        name: "Jane",
+        
+        logHello: function (friends) {
+            friends.forEach(friend => {
+                console.log(this.name + " says hello to " + friend)
+            });
+        }
+    }
+
+
+7.Promises in ES6
+Async/Await
+
+8. Var vs Let vs Const
+var: 
+  function scoped
+  undefined when accessing a variable before it's declared
+
+let: 
+  block scoped
+  ReferenceError when accessing a variable before it's declared
+
+const:
+  block scoped
+  ReferenceError when accessing a variable before it's declared
+  can't be reassigned
+
+
+9.Classes in ES6
+class ClassName
+
+10.Modules in ES6
+import
+export
+
+
+47. Design Pattern
+Ans:
+1. Module
+keeping particular pieces of code independent of other components. This provides loose coupling to support well-structured code.
+For those that are familiar with object-oriented languages, modules are JavaScript "classes". One of the many advantages of classes is encapsulation - protecting states and behaviors from being accessed from other classes. The module pattern allows for public and private (plus the lesser-know protected and privileged) access levels.
+
+
+2. Prototype
+Any JavaScript developer has either seen the keyword prototype, confused by the prototypical inheritance, or implemented prototypes in their code. The Prototype design pattern relies on the JavaScript prototypical inheritance. The prototype model is used mainly for creating objects in performance-intensive situations.
+
+
+3. Observer
+There are many times when one part of the application changes, other parts needs to be updated. In AngularJS, if the $scope object updates, an event can be triggered to notify another component. The observer pattern incorporates just that - if an object is modified it broadcasts to dependent objects that a change has occurred.
+
+Another prime example is the model-view-controller (MVC) architecture; The view updates when the model changes. One benefit is decoupling the view from the model to reduce dependencies.
+
+
+4. Singleton
+A Singleton only allows for a single instantiation, but many instances of the same object. The Singleton restricts clients from creating multiple objects, after the first object created, it will return instances of itself.
+
+Finding use cases for Singletons is difficult for most who have not yet used it prior. One example is using an office printer. If there are ten people in an office, and they all use one printer, ten computers share one printer (instance). By sharing one printer, they share the same resources.
+
+
+48.Spread vs Rest Operator
+Ans:
+Spread:
+the spread operator takes the array of parameters and spreads them across the arguments in the function call
+
+Rest:
+But what if we need our function to be able to work with an unknown number of parameters? That’s where the rest parameter comes in.
+function mult(...arg){ <- Rest operator
+
+console.log(arg);
+}
+
+var ar = [4,3,4,5,6];
+mult(...ar); <- spread operator
+
+
+
+49. inheritance in js
+Ans:
+In JavaScript, objects have a special hidden property [[Prototype]] (as named in the specification), that is either null or references another object. That object is called “a prototype”:
+
+The prototype is a little bit “magical”. When we want to read a property from object, and it’s missing, JavaScript automatically takes it from the prototype. In programming, such thing is called “prototypal inheritance”. Many cool language features and programming techniques are based on it.
+
+The property [[Prototype]] is internal and hidden, but there are many ways to set it.
+
+One of them is to use the special name __proto__, like this:
+let animal = {
+  eats: true
+};
+let rabbit = {
+  jumps: true
+};
+
+rabbit.__proto__ = animal;
+
+Please note that __proto__ is not the same as [[Prototype]]. That’s a getter/setter for it.
+
+That’s pretty simple, right? Any time you create a function, it will automatically have a property called prototype, which will be initialized to an empty object.
+
+ to find the [[Prototype]] is through the __proto__ property. __proto__ is a property that exposes the internal [[Prototype]] of an object
+ 
+ Prototypes allow you to easily define methods to all instances of a particular object. The beauty is that the method is applied to the prototype, so it is only stored in the memory once, but every instance of the object has access to it
+
+
+
+=====================
+Angular JS Questions:
+=====================
+
+1. what is angular js?
+Ans:
+Framework.
+
+2. Angular is mvc or mvvm?
+Ans:
+MVVM (Model view view Model)
+
+3. Angular JS life Cycle
+Ans:
+$apply, $digest and $$phase
+
+$apply enables to integrate changes with the digest cycle
+This is the “heartbeat” of an AngularJS application. $digest processes all the watchExpressions 
+$scope.$$phase flag to see if a digestion phase is going on in the background. If a phase is going on then you can just set the $scope values directly and they should get picked up by the current digestion
+
+
+4. Factory, service, provider angular?
+Ans:
+Providers are the only service you can pass into your .config() function. Use a provider when you want to provide module-wide configuration for your service object before making it available. A provider is used to create a configurable service object. It returns value by using $get() function.
+
+Services It is a singleton object. Use it when you need to share a single object across the application .For example, authenticated user details. Unlike factory, it doesn’t return anything. Services are constructor functions of the object which are instantiated with the new keyword.
+
+Factory: A factory is a simple function which allows you to add some logic before creating the object. It returns the created object. It is just a collection of functions like a class. 
+
+
+5. How to make two parallel call together ?
+Ans:
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise(function(resolve, reject) {
+  setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+  console.log(values);
+});
+
+
+6. Angular js directives?
+Ans:
+AngularJS directives are extended HTML attributes with the prefix ng-.
+The ng-app directive initializes an AngularJS application.
+The ng-init directive initializes application data.
+The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
+
+
+7. Angular Js boot process?
+Ans:
+Angular initializes / bootstraps automatically upon DOMContentLoaded event or when the angular.js script is downloaded to the browser and the document.readyState is set to complete. At this point AngularJS looks for the ng-app directive. When the ng-app directive is found then Angular will:
+  • Load the module associated with the directive.
+  • Create the application injector.
+  • Compile the DOM starting from the ng-app root element.
+
+
+8. testing in angular js?
+Ans:
+.Jasmin
+Jasmine is a behavior driven development framework for JavaScript that has become the most popular choice for testing AngularJS applications. Jasmine provides functions to help with structuring your tests and also making assertions. As your tests grow, keeping them well structured and documented is vital, and Jasmine helps achieve this.
+In Jasmine we use the describe function to group our tests together:
+
+describe('sorting the list of users', function() {
+  it('sorts in descending order by default', function() {
+    var users = ['jack', 'igor', 'jeff'];
+    var sorted = sortUsers(users);
+    expect(sorted).toEqual(['jeff', 'jack', 'igor']);
+  });
+});
+
+
+.Karma
+Karma is a JavaScript command line tool that can be used to spawn a web server which loads your application's source code and executes your tests. You can configure Karma to run against a number of browsers, which is useful for being confident that your application works on all browsers you need to support. 
+
+
+
+==================
+IONIC Questions:
+==================
+
+1. Ionic 3/4 Life cycle
+Ans:
+ionViewDidLoad -> replaced with ngOnInit()
+ionViewWillEnter
+ionViewDidEnter
+ionViewWillLeave
+ionViewDidLeave
+ionViewWillUnload -> replaced with ngOnDestroy()
+Fired right before Angular destroys the view. Useful for cleanup like unsubscribing from observables.
+
+
+2. What is Ionic
+Ans:
+Frot-end framework
+
+
+3. What is Ionic CLI ?
+Ans;
+The official Ionic CLI, or Command Line Interface, is a tool that quickly scaffolds Ionic apps and provides a number of helpful commands to Ionic developers. 
+
+
+4. What is the recommended way of implementing navigation within an Ionic 4 app?
+Ans:
+Ionic 4 depends on Angular’s router module called RouterModule for navigation. The NavController service is still there but it will be deprecated very soon and is therefore not recommended to be used in new Ionic apps built with Ionic 4.
+
+
+5. What is lazy loading ?
+Ans:
+Lazy loading is a general concept where we only load things as we need them. In Ionic 3, we would use the @IonicPage decorator to lazy load our pages, and now with Ionic 4 we lazy load our Angular components with Angular routing. The idea behind lazy loading pages is that we don’t need to load every page in the application as soon as the application is launched.
+
+Lazy loading web components in Ionic 4 takes this a step further. In Ionic 4, every Ionic component that we use is a web component. Each of these web components will be lazily loaded only when they are accessed in the application.
+
+
+6. How to store data in ionic app?
+Ans:
+Ionic Framework offers a Storage module that resides in the @ionic/storage package. It allows us to store key-value pairs and JSON objects in a secure reliable storage, however, it has its own set of limits. 
+
+
+7. What is <ion-app> ?
+Ans:
+App is a container element for the whole Ionic application. There should only be one <ion-app> element per project. An app can have many Ionic components including menus, headers, content, and footers. The overlay components get appended to the <ion-app> when they are presented.
+
+
+8. Ionic color bundle.
+Ans:
+primary, secondary, tertiary, danger, warning, success, dark, medium and light.
+
+
+9. how to create ionic app?
+Ans:
+ionic start <app-name> <template-name> --type=angular
+
+
+10. How to share data between components?
+Ans:
+We can also use Angular Services to share data between multiple pages. An Angular service is a singleton and thus does not get destroyed when the user loads and unloads components within the app. Therefore, the data can be set from one component and it can be retrieved from another component. This is what we need to pass data from one component to another during navigation.
+OR
+openDetailsWithState() {
+  let navigationExtras: NavigationExtras = {
+    state: {
+      user: this.user
+    }
+  };
+  this.router.navigate(['details'], navigationExtras);
+}
+
+
+11. What is Apache Cordova?
+Ans:
+Apache Cordova is an open-source mobile development framework. 
+
+
+12. some ionic component?
+Ans:
+ion-list - The list component is used to display rows of information, such as a contact list, playlist, or menu. It can display cards, list items and more. Lists are also very customizable and match the design of the native Android and iOS lists by default.
+
+ion-card - Card components are a great way to display important pieces of content, and are quickly emerging as a core design pattern for apps. Cards can contain images, buttons, text and more. Cards can also be used standalone, in a list or in a grid.
+
+ion-grid - Grid is a powerful mobile-first system for building custom layouts. The Grid component can be used to ensure your app looks great on any device. It is heavily influenced by Bootstrap's grid system.
+
+ion-button - Buttons are an essential way to interact with and navigate through an app, and should clearly communicate what action will occur after the user taps them. Buttons are highly customizable with color, shape and size being fully customizable. We support round buttons, FAB buttons, outline buttons and more!
+
+ion-input - Inputs allow users to enter data into a UI. They typically appear in forms and dialogs. They should always be wrapped with an ion-item.
+
+
+13. What is the difference between PhoneGap, Cordova, and Ionic?
+Ans:
+PhoneGap is a library that exposes native mobile phone functionalities as JavaScript API. When Adobe purchased PhoneGap, its open source core was donated to the Apache Software Foundation under the name Cordova. In the beginning, there was almost no difference between Cordova and PhoneGap. Although, over the years of development, Adobe started adding a proprietary set of the services to PhoneGap. Today, it is safe to say PhoneGap is Cordova plus extra Adobe services.
+
+Ionic uses Cordova, not PhoneGap for its core tools. Beside native mobile phone functionalities, Ionic gives structure and code scalability to JavaScript applications by using AngularJS. It also provides a set of Angular directives and components to speed up application development.
+
+
+14. What is Ionic Native?
+Ans:
+Ionic Native is a TypeScript wrapper for Cordova or PhoneGap plugins which provides adding any native functionality to the Ionic mobile app. We can implement any of the Cordova plugins community in an Ionic application easily with the help of Ionic Native. One of the functionalities of an Ionic native is to write code better. We can integrate Cordova plugins without Ionic Native as well but Ionic Native add types to these Cordova plugins using wrapper classes and allow us to use intellisense and code suggestions. This prevents from running into errors and write codes quicker and better. Plugins are added frequently to the Ionic Native directory.
+
+
+15. What is Capacitor?
+Ans:
+It might be helpful to think of Capacitor as a powerful new browser for modern Web Apps that unlocks the full native functionality of each platform through consistent cross-platform APIs. Using Capacitor, developers can build one app and target one set of APIs regardless of the platform the app is running on, as opposed to managing multiple APIs for each target platform.
+
+This means that, for example, accessing the Camera uses the same code on iOS/Android as it does on Electron and on the web. This makes it easy to build one web app that runs natively on mobile, desktop, and the web as a Progressive Web App!
+
+
+16. What is the difference between Capacitor and Cordova?
+Ans:
+
+
+17. What AOT and JIT and which is used by Ionic?
+Ans:
+By Default - JIT
+Enable AOT - 
+ionic build android --prod
+By --prod comand
+
+
+ionic run android --aot
+By adding this --aot flag you would end up with an application build that still benefits from Ahead-of-Time compiling but does away with JS minification.
+
+AoT, short for Ahead-of-Time, is a build process which pre-compiles templates and minifies JS so as to improve the performance of an application at runtime. As the underlying compiler is run only once during build time, instead of being called in the browser during the running of the application, launch times are decreased and component rendering is faster as a result.
+
+
+18. what is ionic 4 web component?
+Anns:
+Historically, Ionic shipped as a set of pre-made AngularJS and then Angular 2+ components. Any team using AngularJS or Angular could import Ionic’s components and use them in their app. This worked well while Angular was the only game in town, but the frontend ecosystem quickly evolved and suddenly teams were using way more than just Angular. Ionic found itself siloed and unable to help the largest number of web developers build apps.
+
+To solve this problem, the Ionic team decided that the right decision for a Design System like Ionic was to not “bind” to a specific framework, requiring any users of Ionic to use that framework in conjunction with it. Rather, the components should be built using technology that would work in any framework, and ideally be built on top of web standard APIs that would endure for decades.
+
+We believe so much that Web Components are the right solution to this problem that we’ve invested in building out tooling like Stencil to make it even easier to build and distribute Design Systems with Web Components. Stencil not only makes it easy to build Web Components, but it also automatically manages polyfills for browsers that need them, along with grouping components into “collections” that can be loaded together to improve performance. It also produces components that are very small in terms of file size and exceed performance standards for the modern Progressive Web App era. Unlike a framework, stencil simply provides a structured way to generate Web Components for the purpose of building Design Systems, it likely won’t be used as the “framework” for the rest of your app.
+
+
+19. What is shadow dom?
+Ans:
+The shadow DOM specification defines how to use encapsulated style and markup in web components.
+
+Shadow DOM is that if you want to modify the internal structure of any of Ionic’s components that implement Shadow DOM, you will need to do so using CSS4 variables (whereas previously you could just target elements of the component with standard CSS selectors).
+
+Shadow DOM is another isolated DOM for a specific web component within the main DOM
+
+web component isolation. The main goal is to make web components completely self-contained and immune to outside interference. With a web component that utilises Shadow DOM, you can be reasonably sure it will work and be displayed as intended when you add it, as any existing styling or scripting in the application will not impact the web component.
+
+It does not effect from global css
+
+Eq.
+ion-select{
+    --padding-top:12px !important;
+    --padding-end:12px !important;
+    --padding-bottom:12px !important;
+    --padding-start:20px !important;
+}
+
+
+20. what is Stencil?
+Ans:
+Stencil is a web component compiler for building fast, reusable UI components and Progressive Web Apps.
+
+
+21. What is SASS ?
+Ans:
+Sass is a CSS pre-processor.
+Sass reduces repetition of CSS and therefore saves time.
+
+
+1. variable
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+
+
+2. Nesting
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+
+
+3. Partials
+You can create partial Sass files that contain little snippets of CSS that you can include in other Sass files. This is a great way to modularize your CSS and help keep things easier to maintain. A partial is a Sass file named with a leading underscore. You might name it something like _partial.scss. The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the @use rule
+
+
+4. Modules
+You don't have to write all your Sass in a single file. You can split it up however you want with the @use rule. This rule loads another Sass file as a module, which means you can refer to its variables, mixins, and functions in your Sass file with a namespace based on the filename. Using a file will also include the CSS it generates in your compiled output!
+
+SCSS SYNTAX
+// _base.scss
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+
+
+// styles.scss
+@use 'base';
+
+.inverse {
+  background-color: base.$primary-color;
+  color: white;
+}
+
+
+
+5. Mixins
+A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. You can even pass in values to make your mixin more flexible. A good use of a mixin is for vendor prefixes. Here's an example for transform.
+
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+.box { @include transform(rotate(30deg)); }
+
+
+
+6. Extend/Inheritance
+Using @extend lets you share a set of CSS properties from one selector to another.
+
+/* This CSS will print because %message-shared is extended. */
+%message-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+// This CSS won't print because %equal-heights is never extended.
+%equal-heights {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.message {
+  @extend %message-shared;
+}
+
+.success {
+  @extend %message-shared;
+  border-color: green;
+}
+
+
+
+7. Operators
+Doing math in your CSS is very helpful. Sass has a handful of standard math operators like +, -, *, /, and %. In our example we're going to do some simple math to calculate widths for an aside & article.
+.container {
+  width: 100%;
+}
+
+article[role="main"] {
+  float: left;
+  width: 600px / 960px * 100%;
+}
+
+aside[role="complementary"] {
+  float: right;
+  width: 300px / 960px * 100%;
+}
+
+
+
+22. New HTML5 tags?
+<article> Defines an article in a document
+<footer>  Defines a footer for a document or section
+<header>  Defines a header for a document or section
+<main>  Defines the main content of a document
+<nav> Defines navigation links
+<progress>  Represents the progress of a task
+<section> Defines a section in a document
+<summary> Defines a visible heading for a <details> element
+
+
+23. Ionic Go back
+import { Location } from '@angular/common';
+
+goBack() {
+  this.location.back();
+}
+
+
+24.Unable to display image using FILE_URI
+Ans;
+this.image = (window).Ionic.WebView.convertFileSrc(imageData);
+saveToPhotoAlbum: true
+domSanitizer.bypassSecurityTrustUrl(base64Image)
+window.resolveLocalFileSystemURL
+
+
+25. How to add into info.plist file from config.xml file
+Ans:
+inside of the <platform name=’ios> section
+<config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
+<string>You can take photos</string>
+</config-file>
+
+
+
+26. ionic-storage vs sqllite
+Ans:
+Native storage will only work on native platforms, so no testing in the browser.
+JSON based
+
+Local storage is highly unreliable when use directly.
+SQLite (when used as the interface!) is relational and much too complex.
+
+Ionic Storage is super simple, key-value, reliable and used in so many Ionic apps.
+
+
+
+27. Use of package.lock.json file
+Ans:
+package-lock.json is created for locking the dependency with the installed version.
+
+
+
+28. What is the --save option for npm install?
+Ans:
+The --save option instructed NPM to include the package inside of the dependencies section of your package.json automatically, thus saving you an additional step.
+
+In addition, there are the complementary options --save-dev and --save-optional which save the package under devDependencies and optionalDependencies, respectively. This is useful when installing development-only packages, like grunt or your testing library.
+
+
+29.Create a PWA with Angular Service Workers in Ionic 4
+Ans:
+1. ng add @angular/pwa --project app
+2. ionic build --prod
+3. cd www
+4. ng serve -p 8080
+5. http://localhost:8080
+
+
+30. Find min and max in array.
+Ans:
+Math.min(...array) and Math.max(...array)
+Math.min.apply(null, arr)
+arr.sort()
+arr.reduce()
+
+
+31. Check how much time method taking in execuation
+Ans:
+function someFunction(){
+ var arr = [1,2,3,6, 5];
+ return Math.max.apply(null, arr);
+
+}
+var t0 = performance.now()
+
+someFunction();
+
+var t1 = performance.now()
+console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
+
+OR
+
+console.time('someFunction')
+someFunction() // Whatever is timed goes between the two "console.time"
+console.timeEnd('someFunction')
+
+
+
+32. count character occurance in string.
+Ans:
+var temp = "This is a string.";
+var count = (temp.match(/i/g) || []).length;
+console.log(count);
+
+
+33. what is  ^ and ~ from package.json. ?
+Ans:
+~version “Approximately equivalent to version”, will update you to all future patch versions, without incrementing the minor version. ~1.2.3 will use releases from 1.2.3 to <1.3.0.
+~1.2.3 will match all 1.2.x versions but will miss 1.3.0.
+
+^version “Compatible with version”, will update you to all future minor/patch versions, without incrementing the major version. ^2.3.4 will use releases from 2.3.4 to <3.0.0.
+^1.2.3 will match any 1.x.xrelease including 1.3.0, but will hold off on 2.0.0.
+
+
+Both ~0.1.2 and ^0.1.2 will match the most recent 0.1 software, but ignore 0.2.x since it could be incompatible.
+
+
+
+34. Overlay Components?
+Ans:
+In Ionic 3, the overlay components such as loading, toast, and alert were created synchronously. But, in Ionic 4, they are created asynchronously. Now, the API became promise-based. For example
+showAlert() {  
+  this.alertCtrl.create({  
+    message: "Hello",  
+    subHeader: "I'm an alert message"  
+  }).then(alert => alert.present());  
+}  
+
+
+35. Ionic 4 feature
+Ans:
+Web components
+Shadow DOM
+Stencil
+Capacitor
+PWA Enable
+ion-backdrop
+ion-picker
+CSS Variables
+Ionicons 4.0
+Routing in Ionic
+Lazy Loading
+
+
+36. Ionic Building block
+Ans:
+Components in Ionic are reusable UI elements that serve as the building blocks for your mobile app. Components are made up of HTML, CSS, and sometimes JavaScript. Every Ionic component adapts to the platform on which your app is running. We call this Platform Continuity and go more in depth on how it works in Theming.
+
+UI Components
+Css
+Html
+JS
+TS
+
+
+37. Ionic Storage:
+Ans:
+The thing about Ionic Storage is that it gets extremely frustrating when you store objects, because you can’t directly change the value of a property, you have to get the entire object, change the property, and then override the entire object in storage. And it gets even more insane when you have objects in objects and arrays of objects. Yikes !
+
+When running in a native app context, Storage will prioritize using SQLite, as it's one of the most stable and widely used file-based databases, and avoids some of the pitfalls of things like localstorage and IndexedDB, such as the OS deciding to clear out such data in low disk-space situations.
+
+
+
+==================
+Angular Questions:
+==================
+
+1. what is angular?
+Ans:
+Js MVC framework.
+For single page application.
+
+
+2. What is typescript?
+Ans:
+TypeScript is an open-source language which builds on JavaScript, one of the world’s most used tools, by adding static type definitions.
+By definition, “TypeScript is JavaScript for application-scale development.”
+TypeScript is a strongly typed, object oriented, compiled language.
+more declarative style of programming like interfaces and static typing, offers modules and classes, 
+static type checking, object-based programming patterns, and high-performance typing features.
+
+
+
+3. Angular is mvc or mvvm?
+Ans:
+MVC
+
+
+4. Routing In angular?
+Ans:
+use RouteModule
+
+import { Router } from '@angular/router';
+
+this.router.navigate([state]);
+
+
+5. Angular 7 features ?
+Ans:
+CLI prompts
+Angular material
+Drag & drop
+Virtual scrolling
+Application performance improvements
+
+
+6. What is AOT?
+Ans:
+The Angular ahead-of-time (AOT) compiler converts your Angular HTML and TypeScript code into efficient JavaScript code during the build phase before the browser downloads and runs that code.
+
+ng build --aot
+ng serve --aot
+
+
+7. Component inheritance ?
+Ans:
+export class EmployeeTableComponent extends EmployeeComponent { }
+
+<app-employee-list 
+  [employees]="employees"
+  (select)="selectEmployee($event)">
+</app-employee-list>
+
+
+
+8. Observable vs promise ?
+Ans:
+We had a look at four different approaches:-Callbacks with the danger of entering callback hell -Promises to escape callback hell-Observables to handle streams of data and apply operator magic -async/ await to write “synchronous” code with promises
+
+Which approach should you use?
+Use Callbacks if you got no other choice or only handle one async operation. The code will then still be perfectly manageable and understandable. Callback functions aren’t bad per se - there just exist better alternatives in many cases.
+
+One such case are multiple chained (or dependent) asynchronous operations. You quickly enter callback hell when trying to use callbacks in such a situation. Promises are a great tool to handle your operations in a structured and predictable way.
+
+In all cases where you use promises, you might also use observables. It’s not strictly better but if there’s an operator which makes your life easier or you simply love observables, there’s no downside in using them. There’s a strong argument to be made for observables once you handle data streams, i.e. operations where you’re not just getting back one single value. Promises can’t handle such situations (easily).
+
+Finally, async/ await is an awesome tool for cases where you don’t really want or need to use observables but still want to use promises. You can write “synchronous” code with async/ await and handle your promise chains even easier.
+
+Ultimately, it of course also comes down to your taste and the environment you’re working in. For everything but callbacks, you’ll probably need a transpiler and/ or polyfill. If you only target environments where ES6 or even ES8 is supported natively, that’s not true anymore. For observables, you’ll always need the RxJS library - that of course means that you’ll increase the codebase you ship in the end. Might not be worth it if you’re only handling trivial cases.
+
+
+
+9. Angular life Cycle ?
+Ans:
+constructor
+This is invoked when Angular creates a component or directive by calling new on the class.
+
+ngOnChanges
+Invoked every time there is a change in one of th input properties of the component.
+
+ngOnInit
+Invoked when given component has been initialized. This hook is only called once after the first ngOnChanges
+
+ngDoCheck
+Invoked when the change detector of the given component is invoked. It allows us to implement our own change detection algorithm for the given component.
+
+ngAfterContentInit
+Invoked after Angular performs any content projection into the components view (see the previous lecture on Content Projection for more info).
+
+ngAfterContentChecked
+Invoked each time the content of the given component has been checked by the change detection mechanism of Angular.
+
+ngAfterViewInit
+Invoked when the component’s view has been fully initialized.
+
+ngAfterViewChecked
+Invoked each time the view of the given component has been checked by the change detection mechanism of Angular.
+
+ngOnDestroy
+This method will be invoked just before Angular destroys the component. Use this hook to unsubscribe observables and detach event handlers to avoid memory leaks.
+
+
+
+10. How to make two parallel call together ?
+Ans:
+ForkJoin
+The forkJoin() operator allows us to take a list of Observables and execute them in parallel. Once every Observable in the list emits a value, the forkJoin will emit a single Observable value containing a list of all the resolved values from the Observables in the list
+ngOnInit() {
+let character = this.http.get('https://swapi.co/api/people/1');
+let characterHomeworld = this.http.get('http://swapi.co/api/planets/1');
+forkJoin([character, characterHomeworld]).subscribe(results => {
+  // results[0] is our character
+  // results[1] is our character homeworld
+  results[0].homeworld = results[1];
+  this.loadedCharacter = results[0];
+});
+}
+
+
+12. why constructor need ?
+Ans:
+which is called when the class is instantiated. The constructor's purpose is to help prepare the creation of a new instance of the class. In the context of Angular 2 it can be used to properly initialize fields.
+
+Use the constructor to initialize class members and for dependency injection. Use ngOnInit for initialization work.
+
+The ngOnInit method runs after the constructor method, meaning that all of the injected dependencies will be resolved and all of the class members will be defined. This makes it the perfect place to do any of the initialization work/logic for the component.
+
+
+13. Angular cli how to create service/componennt ?
+Ans:
+ng g s services/backendApi --module=app.module
+ng g c name
+
+
+14. http vs httpclient ?
+Ans:
+  • request JSON data
+  • request non-JSON data
+  • read the HTTP response
+  • list progress events
+  • create interceptors in Angular
+
+
+
+15. What is injector in angular ?
+Ans:
+Dependency Injection in Angular
+Dependency injection (DI), is an important application design pattern. Angular has its own DI framework, which is typically used in the design of Angular applications to increase their efficiency and modularity.
+
+Dependencies are services or objects that a class needs to perform its function. DI is a coding pattern in which a class asks for dependencies from external sources rather than creating them itself.
+
+The Angular Injector is responsible instantiating the dependency and injecting into the component or service
+
+Service  as @Injectable()
+
+
+
+16. What is singleton service in angular?
+Ans:
+There are two ways to make a service a singleton in Angular:
+
+Set the providedIn property of the @Injectable() to "root".
+@Injectable({
+  providedIn: 'root'
+})
+
+Include the service in the AppModule or in a module that is only imported by the AppModule
+providers: []
+
+
+
+17. Explain map, filter, reduce, forEach, slice, splice, indexOf method ?
+Ans:
+Map:
+Map change the value/Transform
+always return new array.
+a = [1, 2, 3];
+b = a.map(function(x) { return x*x; });  // b is [1, 4, 9]
+
+
+Filter:
+filter select the vaue.
+a = [1, 2, 3];
+b = a.filter(function(x) { return x*x; });  // b is [1, 2, 3]
+
+forEach:
+never return anything
+Using .forEach(): first you have to create an empty array.
+var officersIds = [];
+officers.forEach(function (officer) {
+  officersIds.push(officer.id);
+});
+
+
+Reduce:
+can be used to return almost anything. It is often used to return a single number, like an sum, but it can also be used to combine the logic of Map and Filter to return an array of values matching certain criteria. This can remove unnecessary iterations.
+
+
+slice:
+The slice() method returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). The original array will not be modified.
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2));
+// expected output: Array ["camel", "duck", "elephant"]
+console.log(animals.slice(2, 4));
+// expected output: Array ["camel", "duck"]
+console.log(animals.slice(1, 5));
+// expected output: Array ["bison", "camel", "duck", "elephant"]
+
+
+splice:
+The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements.
+var months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb');
+// inserts at 1st index position
+console.log(months);
+// expected output: Array ['Jan', 'Feb', 'March', 'April', 'June']
+
+months.splice(4, 1, 'May');
+// replaces 1 element at 4th index
+console.log(months);
+// expected output: Array ['Jan', 'Feb', 'March', 'April', 'May']
+
+
+indexOf:
+find index of element in array.
+
+
+18. Angular Guard?
+Ans:
+Angular’s route guards are interfaces which can tell the router whether or not it should allow navigation to a requested route. They make this decision by looking for a true or false return value from a class which implements the given guard interface.
+
+There are five different types of guards and each of them is called in a particular sequence. The router’s behavior is modified differently depending on which guard is used. The guards are:
+
+CanActivate
+canActivate is used to prevent unauthorized users from accessing certain routes.
+
+CanActivateChild
+CanDeactivate
+
+CanLoad
+canLoad is used to prevent the application from loading entire modules lazily if the user is not authorized to do so
+
+Resolve
+resolve() method that will be invoked when the navigation starts. The router will then wait for the data to be resolved before the route is finally activated.
+
+
+Create
+import { Injectable } from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
+import { AuthService } from './auth.service';
+@Injectable()
+export class AuthGuardService implements CanActivate {
+  constructor(public auth: AuthService, public router: Router) {}
+  canActivate(): boolean {
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['login']);
+      return false;
+    }
+    return true;
+  }
+}
+
+Use
+import { Routes, CanActivate } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+export const ROUTES: Routes = [
+  { path: '', component: HomeComponent },
+  { 
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard] 
+  },
+  { path: '**', redirectTo: '' }
+];
+
+
+
+19. HTTP Interceptors?
+Ans:
+According to Angular Team at Google “When your application makes a request, interceptors transform it before sending it to the server, and the interceptors can transform the response on its way back before your application sees it.”
+If in your application, you want a common place where you can check for all the request made to server from your application and check all the responses from the server, the best way is to use “INTERCEPTORS”.
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { MyInterceptor } from './my-interceptor';
+
+@NgModule({
+  imports: [BrowserModule, HttpClientModule],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true
+    }
+  ]
+})
+export class AppModule { }
+
+
+
+
+20. Angular Interface ?
+Ans:
+Use for type checks 
+interface is a way to define a contract on a function with respect to the arguments and their type. Along with functions, an interface can also be used with a Class as well to define custom types.
+An interface is an abstract type, it does not contain any code as a class does. It only defines the 'signature' or shape of an API. During transpilation, an interface will not generate any code, it is only used by Typescript for type checking during development.
+
+export interface IGame {
+    gameId: number;
+    gameName: string;
+    gameCode: string;
+    releaseDate: string;
+    price: number;
+    description: string;
+    thumbRating: number;
+    imageUrl: string;
+}
+
+import { Component } from '@angular/core';
+import { IGame } from './game';
+ 
+@Component({
+    selector: 'game-list',
+    templateUrl: './game-list.component.html'
+})
+export class GameListComponent {
+    pageTitle = 'Dynamic! Game List';
+    imageWidth = 45;
+    imageMargin = 1;
+    showImage = true;
+    listItem = 'Mario';
+    games: IGame[] = [...];
+ 
+    toggleImage(): void {
+        this.showImage = !this.showImage;
+    }
+}
+
+
+
+21. How to create and use event in angular?
+Ans:
+export class PersonComponent {
+    @Input() student : Student;
+    @Output() updateEmployee = new EventEmitter<Employee>();
+    employee = new Employee();  
+    update() {
+   this.employee.fname = this.student.fname;    
+   this.employee.lname = this.student.lname;
+    
+   this.updateEmployee.emit(this.employee);
+    } 
+}
+
+
+
+22. What is decorator ?/Annotations
+Ans:
+  • Class decorators, e.g. @Component and @NgModule
+  • Property decorators for properties inside classes, e.g. @Input and @Output
+  • Method decorators for methods inside classes, e.g. @HostListener
+  • Parameter decorators for parameters inside class constructors, e.g. @Inject
+
+ Class Decorators
+They allow us to tell Angular that a particular class is a component, or module, for example. And the decorator allows us to define this intent without having to actually put any code inside the class.
+
+ Property Decorators
+These are probably the second most common decorators that you’ll come across. They allow us to decorate specific properties within our classes - an extremely powerful mechanism.
+Let’s take a look at @Input(). Imagine that we have a property within our class that we want to be an input binding.
+
+Method Decorators
+Method decorators are very similar to property decorators but are used for methods instead. This let’s us decorate specific methods within our class with functionality. A good example of this is @HostListener. This allows us to tell Angular that when an event on our host happens, we want the decorated method to be called with the event.
+export class ExampleComponent {
+@HostListener('click', ['$event'])
+onHostClick(event: Event) {
+// clicked, `event` available
+}
+ Parameter Decorators
+Parameter decorators are quite interesting. You may have come across these when injecting primitives into a constructor, where you need to manually tell Angular to inject a particular provider.
+Parameter decorators allow us to decorate parameters in our class constructors. An example of this is @Inject that lets us tell Angular what we want that parameter to be initiated with:
+import { MyService } from './my-service';
+
+@Component({
+selector: 'example-component',
+template: '<div>Woo a component!</div>'
+})
+export class ExampleComponent {
+constructor(@Inject(MyService) myService) {
+console.log(myService); // MyService}}
+
+
+Annotations:
+@Component({
+  selector: 'tabs',
+  template: `
+    <ul>
+      <li>Tab 1</li>
+      <li>Tab 2</li>
+    </ul>
+  `
+})
+export class Tabs {
+
+}
+
+“AtScript Annotations” and decorators are nearly the same thing. From a consumer perspective we have exactly the same syntax. The only thing that differs is that we don’t have control over how AtScript annotations are added as metadata to our code. Whereas decorators are rather an interface to build something that ends up as annotation. Over a long term, however, we can just focus on decorators, since those are a real proposed standard. AtScript is deprecated, and TypeScript implements decorators.
+
+As you might know, the Angular team announced earlier this year that they’re going to drop the term “AtScript” in favour of TypeScript, 
+
+A decorator corresponds to a function that is called on the class whereas annotations are "only" metadata set on the class using the Reflect Metadata library.
+
+In Angular, annotations are used for creating an annotation array. They are only metadata set of the class using the Reflect Metadata library. Decorators in Angular are design patterns used for separating decoration or modification of some class without changing the original source code
+
+
+
+
+
+23. Server side rendering ?
+Ans:
+Typical Angular applications are Single-Page Applications (aka SPA’s). This process can also be referred to as client-side rendering (CSR). On the flip side, Angular Universal is the process of server-side rendering (SSR) your application to a String or HTML, where instead of occurring on the Browser, it is done on the Server (Node.js in our case).
+
+What is Angular Universal?
+Angular Universal is simply the nickname for Server-Side Rendering (SSR for short) with Angular. Technically the package is now found under 
+🚀@angular/platform-server.
+
+ng add @nguniversal/express-engine --clientProject [name]
+
+Typically we’d run ng serve to get our normal Client-side rendered (CSR) application fired up…
+Dynamic SSR & Static Pre-rendering
+
+Dynamic SSR is the concept that there will be a live Node server spun up that whenever a Route is hit, it will dynamically generate and serialize the application — returning that String to the browser.
+
+Static Pre-rendering is when we want to pre-render a list of routes, and create static files, (ie: index.html, about-us.html, etc) and then use a server of our choosing to serve up those files later on.
+
+// Dynamic SSR
+npm run build:ssr && npm run serve:ssr
+
+// Static Pre-Rendering
+npm run build:prerender && npm run serve:prerender
+
+
+
+24. What is ngModule?
+Ans:
+NgModules configure the injector and the compiler and help organize related things together.
+The purpose of a NgModule is to declare each thing you create in Angular, and group them together
+
+An NgModule is a class marked by the @NgModule decorator. @NgModule takes a metadata object that describes how to compile a component's template and how to create an injector at runtime. It identifies the module's own components, directives, and pipes, making some of them public, through the exports property, so that external components can use them. @NgModule can also add service providers to the application dependency injectors.
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule],
+  exports: [],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+
+
+The declarations array should contain a list of any directives, components, or pipes that this NgModule defines. This makes it possible for the compiler to find these items and ensure they’re bundled properly. If this is the root NgModule, then declarations are available for all NgModules. Otherwise, they’re only visible to the same NgModule.
+
+Any component that needs to be loaded at runtime has to be added to the list of entryComponents. Essentially, this will create the component factory and store it for when it needs to be loaded dynamically. You can learn more about how to dynamically load components from the documentation.
+
+If your NgModule depends on any other objects from another NgModule, you’ll have to add it to the imports array. This ensures that the compiler and dependency injection system know about the imported items.
+
+Using the exports array, you can define which directives, components, and pipes are available for any NgModule that imports this NgModule. For example, in a UI library you’d export all of the components that compose the library.
+
+The providers is an array that contains the list of any providers (injectable services) that are available for this NgModule. Providers have a scope, and if they’re listed in a lazy-loaded NgModule, they’re not available outside of that NgModule.
+
+
+
+
+25. what is directive?
+Ans:
+Directives are instructions in the DOM. They specify how to place your components and business logic in the Angular.
+
+Now take a look at the below image, if you want a similar functionality in all the components for an example fade-in and fade-out functionality, you can take two approaches. The common approach would be, you can explicitly write the code in all the components for the required behavior, but it would be tedious and complex. Alternatively, like a function in a programming language, you can write the code and later you can call it anytime whenever you want that behavior of that function. Similarly, you can create a directive and write the behavior inside it. Then, wherever you need that behavior, you can import the directive.
+
+
+Directives are js class and declared as @directive. There are 3 directives in Angular.
+
+Component Directives
+Structural Directives
+Attribute Directives
+
+Component Directives: Component directives are used in main class. They contain the detail of how the component should be processed, instantiated and used at runtime.
+
+Structural Directives: Structural directives start with a * sign. These directives are used to manipulate and change the structure of the DOM elements. For example, *ngIf and *ngFor.
+
+Attribute Directives: Attribute directives are used to change the look and behavior of the DOM elements. For example: ngClass, ngStyle etc.
+
+
+
+26. what is pipe?
+Ans:
+Pipes are a useful feature in Angular. They are a simple way to transform values in an Angular template. ... A pipe takes in a value or values and then returns a value. This is great for simple transformations on data but it can also be used in other unique ways.
+@Pipe({name: 'default', pure: true})
+export class DefaultPipe {
+   transform(value: any, defaultValue: any): any {
+       return value || defaultValue;
+   }
+}
+
+<b>{{title | default}}</b><br/>
+
+
+27. get file size ionic
+Ans:
+// window.resolveLocalFileSystemURL(imageData, function (fileEntry) {
+//   fileEntry.file(function (fileObj) {
+//     fileObj.size
+//   });
+
+
+
+28. Component Lazy loading in angular ?
+Ans:
+Lazy loading or "On-demand loading" is a programming practice where we delay the loading of an object until its needed. In simple terms, you put off doing something which is not required at the moment.
+
+@NgModule({
+  imports: [
+    RouterModule.forChild(routes),
+  ],
+  providers: [],
+  entryComponents: [],
+  declarations: []
+})
+
+const routes: Routes = [
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+ {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+  },
+];
+
+
+
+
+29. Angular one way/ two way binding
+Ans:
+one way
+{{firstName}}
+[innerHTML]
+[style.color]
+
+Two way
+[(ngModel)]
+
+
+
+
+30. How to share data between two or more component ?
+Ans:
+Parent to Child: via Input
+
+Child to Parent: via Output() and EventEmitter
+
+Child to Parent: via ViewChild
+@ViewChild(ChildComponent) child;
+ngAfterViewInit() {
+  this.message = this.child.message
+}
+
+
+Unrelated Components: via a Service
+
+BehaviorSubject RXJS: via a Service
+The BehaviorSubject represents a value that changes over time, like the user authentication status for example. But the real power of the BehaviorSubject, in this case, is that every subscriber will always get the initial or the last value that the subject emits.
+
+Subjects are used for multicasting Observables. This means that Subjects will make sure each subscription gets the exact same value as the Observable execution is shared among the subscriber
+
+
+31. Angular testing?
+Ans:
+Angular testing
+Jasmin
+Karma
+
+import { async, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+describe('AppComponent', () => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
+  }));
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
+});
+
+command to run ->  npm test
+
+
+32. ng-content
+Ans:
+Used for dynamic html loading
+it has selector attribute, using that we can select element to show.
+
+
+
+33. ng-template 
+Ans:
+Is a virtual element and it's cotents are displayed only when needed based on condition
+You probably came across ng-template for the first time while implementing an if/else scenario such as for example this one:
+<div class="lessons-list" *ngIf="lessons else loading">
+  ... 
+</div>
+
+<ng-template #loading>
+    <div>Loading...</div>
+</ng-template>
+This is a very common use of the ngIf/else functionality: we display an alternative loading template while waiting for the data to arrive from the backend.
+
+
+
+34: ng-container
+Ans:
+In order to avoid having to create that extra div, we can instead use ng-container directive:
+ng-template
+<div class="lesson" *ngIf="lessons" 
+       *ngFor="let lesson of lessons">
+    <div class="lesson-detail">
+        {{lesson | json}}
+    </div>
+</div>  
+This would not work! Instead, we would get the following error message:
+his means that its not possible to apply two structural directives to the same element. In order to do so, we would have to do something similar to this:
+
+
+<div *ngIf="lessons">
+    <div class="lesson" *ngFor="let lesson of lessons">
+        <div class="lesson-detail">
+            {{lesson | json}}
+        </div>
+    </div>
+</div>
+
+
+In this example, we have moved the ngIf directive to an outer wrapping div, but in order for this to work we have to create that extra div element.
+
+This solution would already work, but is there a way to apply a structural directive to a section of the page without having to create an extra element?
+
+Yes and that is exactly what the ng-container structural directive allows us to do!
+
+In order to avoid having to create that extra div, we can instead use ng-container directive:
+<ng-container *ngIf="lessons">
+    <div class="lesson" *ngFor="let lesson of lessons">
+        <div class="lesson-detail">
+            {{lesson | json}}
+        </div>
+    </div>
+</ng-container>
+
+
+35. Searching Algorithms
+Ans:
+In this, the list or array is traversed sequentially and every element is checked. For example: Linear Search.
+
+
+these algorithms are specifically designed for searching in sorted data-structures. These type of searching algorithms are much more efficient than Linear Search as they repeatedly target the center of the search structure and divide the search space in half. For Example: Binary Search.
+
+
+36. Sorting Algorithms
+Ans:
+Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.
+
+Quick Sort
+Heap Sort
+
+
+37. Implement polymorphism
+Ans;
+When multiple classes inherit from a parent and override the same functionality, the result is polymorphism. Each of those child classes now implements a property or method, but they each may have their own way of performing that implementation.
+class CheckingAccount {
+  open(initialAmount: number) {
+    // code to open account and save in database
+  }
+}
+ 
+class BusinessCheckingAccount extends CheckingAccount {
+  open(initialAmount: number) {
+    if (initialAmount < 1000) {
+      throw new Error("Business accounts must have an initial deposit of 1.000 Euros")
+    }
+    super.open(initialAmount);
+  }
+}
+ 
+class PersonalCheckingAccount extends CheckingAccount {
+  open(initialAmount: number) {
+    if (initialAmount <= 0) {
+      throw new Error("Personal accounts must have an initial deposit of more than zero Euros")
+    }
+    super.open(initialAmount);
+  }
+}
+
+To achieve polymorphism, inherit from a base class, then override methods and write implementation code in them. In addition to overriding methods, you can overload methods to achieve polymorphism
+
+
+38. angular current stable version
+Ans:
+9.1.4
+
+
+39. which angular version i am using
+Ans:
+7.2.4
+
+
+40. Interpolation and Template Expression
+Ans:
+{{}}
+
+
+41. Property Binding
+Ans:
+<h1 [innerHtml]='fullName'></h1> 
+Property Binding: to set an element property to a non-string data value, you must use property binding
+
+Example :
+we are disabling a button by binding to the Boolean property isDisabled.
+<button [disabled]='isDisabled'>Try Me</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+Have you uploaded apk and ipa
+what is csr file
+which tool you use for code management tool 
+how to remove duplicate / or not to render in ng-repeat
+
+
+
+
+2.9 year 
+=================For Interview==========================
+
+1. Cookies/SessionStorage/LocalStorage ?
+
+2. Closure
+
+4. IS Javascript is synchronous or asynchronous ?
+
+5. Is js singlethreded or multithreaded.
+
+6. double and triple equal operator?
+
+7. Modifying a copy of a JavaScript object is causing the original object to change ?
+
+8. What are undeclared and undefined variables?
+
+9. How will you remove duplicates from array js?
+
+13. tag vs element?
+
+14. slice, splice method ?
+
+15. Function and function as expression ?
+
+16. Event bubling
+
+17. How to make two parallel call together in js?
+
+18. settimeout concept with 0 miliseconf delay
+
+19. what is js callback/ callback-hell ?
+
+20. what is js promises ?
+
+21. what is js async/await ?
+
+22. what is js Observable?
+
+23. Find min and max in array.
+
+24. What is event loop
+
+
+===================
+Angular JS Question
+===================
+
+Digest cycle in angular js
+
+rootScope and scope
+
+type of directive
+
+ng-if ng-show ng-hide
+
+$watch   watch change
+
+$scope.$apply()   forcefully apply
+
+best practice for angular js
+
+
+routing in angular js
+
+design patten angular js - like mvc or mvvm
+
+form validation in angular js
+
+server dise or client side validation 
+
+24. Factory, service, provider angular?. 
+
+26. Angular js directives?
+
+27. Data sharing one controller to another
+
+28. Routing
+
+29. Platform specific css/code
+
+
+31. Is it possible to render a 5000 item list without affecting its scroll performance?
+In Ionic, there is an option for collection-repeat directive which renders items that are visible in the DOM. Therefore, even when your lists are long, only items that will be visible in the viewport will be ren
+
+32. What are the benefits of caching views in Ionic applications?
+In Ionic, caching of up to ten views is done by default. This improves performance and assists in maintaining different states simultaneously in the views. For instance, cache maintains scroll pos
+
+
+33. How is ionic build different from ionic prepare? You may be asked this question during your ionic interview questions and answer.
+Ionic prepare copies files directly from the www folder into the www folder of the target platform. Ionic build builds the app’s source code to enable it to run on an emulator/ simulator/device
+
+
+34. What Is Web View And What Is The Use Of Web View
+
+35. What Is UIWeb View And What Is The Use Of Web View
+
+36. Push Notification
+
+37. Ng-Repeat vs collection-repeat
+
+38. What Are The Tips And Tricks To Improve Mobile App Performance
+
+39. What Is Npm How to remove dependency issues
+
+40. What is two-way binding?
+
+41. What is the purpose of the $watch?
+
+42. Explain the purpose of track by in ng-repeat?
+
+43. Best way to upload picture on server
+
+44. Payment gateway
+
+=================
+IONIC Question
+=================
+
+
+27. Ionic 3/4 Life cycle
+
+28. What is lazy loading ?
+
+29. How to store data in ionic app?
+
+30. how to create ionic app?
+
+31. How to share data between components?
+
+32. difference between PhoneGap, Cordova, and Ionic?
+
+33. What is Ionic Native?
+
+34. What is Capacitor?
+
+35. What is shadow dom?bv
+
+36.  Ionic Go back page
+
+37. ionic-storage vs sqllite
+
+
+=================
+Angular Question
+=================
+
+
+39. Routing In angular?
+
+40. Component inheritance ?
+
+41. Angular life Cycle ?
+
+42. why constructor need ?
+
+43. What is service/singleton service in angular?
+
+44. Angular Guard?
+
+45. HTTP Interceptors?
+
+46. Angular Interface ?
+
+47. What is decorator ?
+
+48. what is directive? 
+
+49. what is pipe?
+
+50. Component Lazy loading in angular ?
+
+51. Share data between two or more component ?
+
+52. Es6 feacture
+
+53. Svn or git what you use for code management tool
+

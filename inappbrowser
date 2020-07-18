@@ -1,0 +1,487 @@
+Testing app
+
+IOS: https://ioair.link/hpcue3
+
+ANDROID: https://ioair.link/jmbquw
+
+Please test and let me know.
+
+
+
+ <button ng-click="openbrowser()">Click</button>
+ 
+    $scope.openbrowser = function() {
+      console.log('openbrowser');
+      var toolbar = 'no';
+      var openIn = "_self";
+      var options = {};
+      var location = 'yes';
+
+      if (ionic.Platform.isIOS()) {
+        toolbar = 'yes';
+        openIn = "_tab";
+        location = 'no'
+      }
+
+      var options = {
+        lefttoright: 'yes',
+        hidenavigationbuttons: 'yes',
+        location: location,
+        clearcache: 'no',
+        toolbar: toolbar,
+        zoom: 'no',
+        hidden: 'no',
+        closebuttoncaption: 'Back',
+        enableViewportScale: 'yes',
+        disallowoverscroll: 'no',
+        hideurlbar:'yes',
+      };
+
+      let url = 'http://fingoole.com/account/covid19/referral/9899008272';
+      $cordovaInAppBrowser.open(url, openIn, options);
+      $rootScope.$on('$cordovaInAppBrowser:loadstop', function (e, event) {
+        if(event.url == url){
+          //var codePass = "document.getElementById('reviews-2').style.display = '"+ 'none' +"';"
+          var codePass = "document.getElementsByClassName('text-right')[0].style.display = '"+ 'none' +"';"
+          $timeout(function () {
+            $cordovaInAppBrowser.executeScript({ 
+              code: codePass 
+            }).then(function(data) {
+              console.log("Code Inserted Succesfully");
+            });
+          },200);
+        }
+      });
+
+    };
+
+
+
+    
+
+
+
+      // $rootScope.flxName = '2X';
+      // $rootScope.increaseSize =function(){
+      //   if($rootScope.flxName == '2X'){
+      //     changestyle('80%', '1X', '10%')
+      //   }
+      //   else if($rootScope.flxName == '1X'){
+      //     changestyle('50%', '2X', '25%')
+      //   }
+      // };
+
+      // function changestyle(style, name, left){
+      //   jQuery(function($) {
+      //     $("#mymenu").animate({
+      //       width: style,
+      //       height: style, 
+      //     }, 200 );
+
+      //     if($("div").hasClass("modal-backdrop")){
+      //       $('.modal-backdrop').css('width',style, );
+      //       $('.modal-backdrop').css('height',style, );
+      //       $('.modal-backdrop').css('left',left, );
+      //     }
+      //   })
+      //   $rootScope.flxName = name;
+      // }
+
+
+/*.flx{
+  position: absolute;
+  background: red;
+  color: white;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  font-weight: bold;
+}
+ion-nav-view{
+  background: black;
+}
+#mymenu{
+  width: 50%;
+  height: 50%;
+  margin: auto;
+}
+.modal-backdrop{
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  left: 25%;
+}*/
+
+<!--   <div class="flx" id="flxBtn" ng-click="increaseSize()">{{flxName}}</div> -->
+
+
+
+
+ if (url && url != "") {
+          if(where == 0){
+              GlobalLoadingService.showLoadingMessage();
+              $cordovaInAppBrowser.open(url, openIn, options);
+
+              // var codePass = "document.getElementById('coupon_code1').value = '"+ 1 +"';document.getElementById('coupon_code2').value = '"+ 2 +"';document.getElementById('coupon_code3').value = '"+ 3 +"';document.getElementById('coupon_code4').value = '"+ 4 +"';document.getElementById('coupon_code5').value = '"+ 5 +"';document.getElementById('coupon_code6').value = '"+ 6 +"';"
+              // var codePass2 = "FnAutoVerifyCouponCode('123456')";
+              
+              $rootScope.$on('$cordovaInAppBrowser:loadstop', function (e, event) {
+                GlobalLoadingService.hideLoadingMessage();
+
+                // console.log('loadstop', e, event);
+                // if(event.url == 'https://thedubaimall.com/en/coupon-code'){
+                //   $cordovaInAppBrowser.executeScript({ 
+                //     code: codePass 
+                //   }).then(function(data) {
+                //     console.log("Code Inserted Succesfully");
+                //   });
+
+                //   $timeout(function () {
+                //     $cordovaInAppBrowser.executeScript({ 
+                //       code: codePass2 
+                //     }).then(function(data) {
+                //       console.log("Code Inserted Succesfully");
+                //     });
+                //   },200);
+                // }
+
+              });
+
+              // var str = '123456';
+              // var result = '';
+              // for(var i=1; i<=str.length; i++){
+              //     result+= "document.getElementById('coupon_code'"+i
+              // +"').value = '"+ str.charAt(i) +"';"
+              // }
+
+              //var win = window.open( url, '_blank', 'location=yes', 'toolbar=no');
+              // var codePass = "document.getElementById('coupon_code1').value = '"+ 1 +"';document.getElementById('coupon_code2').value = '"+ 2 +"';document.getElementById('coupon_code3').value = '"+ 3 +"';document.getElementById('coupon_code4').value = '"+ 4 +"';document.getElementById('coupon_code5').value = '"+ 5 +"';document.getElementById('coupon_code6').value = '"+ 6 +"';"
+              // var codePass2 = "FnAutoVerifyCouponCode('123456')";
+              // win.addEventListener( "loadstop", function(e) {
+              //   console.log('loadstop', e);
+              //   $timeout(function () {
+              //     win.executeScript({code:codePass})
+              //   },0);
+              //   $timeout(function () {
+              //     win.executeScript({code:codePass2})
+              //   }, 200);
+              // });
+
+              // win.addEventListener( "exit", function(e) {
+              // });
+
+              $rootScope.$on('$cordovaInAppBrowser:exit', function (e, event) {
+                GlobalLoadingService.hideLoadingMessage();
+              });
+          }
+
+
+
+
+
+
+
+
+          /*Working fine in android*/
+              var str = '123456';
+              var codePass = '';
+              for(var i=1; i<=str.length; i++){
+                let id = 'coupon_code'+i;
+                codePass+= "document.getElementById('"+id+"').value = '"+ str.charAt(i-1) +"';"
+              }
+              var codePass2 = "FnAutoVerifyCouponCode('123456')";
+
+              $rootScope.$on('$cordovaInAppBrowser:loadstop', function (e, event) {
+                GlobalLoadingService.hideLoadingMessage();
+                console.log('loadstop', e, event);
+                if(event.url == 'https://thedubaimall.com/en/coupon-code'){
+                  $cordovaInAppBrowser.executeScript({ 
+                    code: codePass 
+                  }).then(function(data) {
+                    console.log("Code Inserted Succesfully");
+                  });
+
+                  $timeout(function () {
+                    $cordovaInAppBrowser.executeScript({ 
+                      code: codePass2 
+                    }).then(function(data) {
+                      console.log("Code Inserted Succesfully");
+                    });
+                  },200);
+                }
+              });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ion-view view-title="Xpress It">
+
+	<ion-nav-bar class="delivery">
+	    <ion-nav-back-button class="button button-clear"></ion-nav-back-button>
+	</ion-nav-bar>
+	
+	<ion-nav-title>Xpress It</ion-nav-title>
+
+	<ion-content delegate-handle="deliveryPageScroll">
+
+	    <div class="row delivery-content" style="height: 50px;">
+        	<div class="col col-33">
+        		<button ng-if="activeIndex >0" on-tap="previous()" class="button button-small button-clear pnbtn">Previous</button>
+        	</div>
+        	<div class="col col-33 steptext">
+        		<button class="button button-small button-clear">Step {{activeIndex+1}}/3</button>
+        	</div>
+        	<div class="col col-33">
+        		<button ng-if="activeIndex <2" on-tap="next()" class="button button-small button-clear pnbtn nxtbtn">Next</button>
+        	</div>
+        </div>
+
+    	<ion-slide-box on-slide-changed="slideChanged($index)" show-pager="false" class="slide-outer" delegate-handle="delivery-handle" auto-play="false">
+        
+	        <ion-slide>
+	        <div style="margin: 10px;" class="delivery-content">
+
+	    	<div class="row outer-form">
+	            <input style="border:1px solid rgb(237, 237, 237);margin-top: 0;" ng-model="delivery.city" type="text" required class="readonly-bg" readonly placeholder="Select City*" on-tap="showCityModal()"><i class="fa fa-chevron-right pull-right city-right-icon"></i>
+
+	            <div ng-if="showDataBox">
+	            <select ng-model="delivery.itemtype" required="true" style="margin: 10px 0;">
+	              <option value="">Select Package Type*</option>
+	              <option value="{{item}}" ng-repeat="item in deliveryData.itemList track by $index">{{item}}</option>
+	            </select>
+
+	            <textarea style="background: white !important;" type="text" limit-Char="300" ng-model="delivery.moredetail" placeholder="Enter Package Details*" id="textmoredel" ng-change="auto_grow('textmoredel')" ng-class="!delivery.moredetail && formsubmit?'delinvalid2':''" ng-click="makeFocus('textmoredel')"></textarea>
+
+	            <p class="weightMessage" ng-bind-html="deliveryData.weightMessage"></p>
+
+	        	</div>
+	    	</div>
+
+	    	</div>
+	        </ion-slide>
+
+	        <ion-slide>
+	        <p class="costlabel">Enter Pickup Details</p>
+	    	<div class="list stack-input-place" id="stack-input">
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-home"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus===true, 'delinvalid' : !delivery.pickupaddress && formsubmit && !focus}">
+				    <span class="input-label">Flat, Floor, Building, Locality*</span>
+				    <!-- <input ng-model="delivery.pickupaddress" type="text" placeholder="Example- 2nd floor, Matrix office" limit-Char="300" ng-focus="focus=true" ng-blur="focus=false"> -->
+				    <textarea ng-model="delivery.pickupaddress" type="text" placeholder="Example- 2nd floor, Matrix office" limit-Char="300" ng-focus="focus=true" ng-blur="focus=false" id="textpickadd" ng-click="makeFocus('textpickadd')" ng-change="auto_grow('textpickadd')"></textarea>
+				  	</label>
+		    	</div>
+		    	</div>
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-location"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus1===true, 'delinvalid' : !delivery.pickuppincode && formsubmit && !focus1}">
+				    <span class="input-label">Pin code*</span>
+				    <input ng-model="delivery.pickuppincode" type="tel" placeholder="Example- 110030" maxlength="6" required numbers ng-focus="focus1=true" ng-blur="focus1=false" ng-change="checkPincode(1)" id="focus1" ng-click="makeFocus('focus1')">
+				  	</label>
+		    	</div>
+		    	</div>
+
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-person"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus2===true, 'delinvalid' : !delivery.pickupname && formsubmit && !focus2}">
+				    <span class="input-label">Contact person name*</span>
+				    <input ng-model="delivery.pickupname" type="text" placeholder="Example- Chandan" ng-focus="focus2=true" limit-Char="40" ng-blur="focus2=false" id="focus2" ng-click="makeFocus('focus2')">
+				  	</label>	
+		    	</div>
+		    	</div>
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-iphone"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus3===true, 'delinvalid' : !delivery.pickupphone && formsubmit && !focus3}">
+				    <span class="input-label">Contact Detail*</span>
+				    <input ng-model="delivery.pickupphone" type="tel" ng-focus="focus3=true" ng-blur="focus3=false" required numbers placeholder="Example- 9811XXXXXX / 011268XXXXX" id="focus3" ng-click="makeFocus('focus3')">
+				  	</label>
+		    	</div>
+		    	</div>
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-navigate"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus4===true, 'delinvalid' : !delivery.pickuphowtoreach && formsubmit && !focus4}">
+				    <span class="input-label">How to reach? / Landmark*</span>
+				    <!-- <input ng-model="delivery.pickuphowtoreach" type="text" placeholder="Example- Behind metro station" limit-Char="200" ng-focus="focus1=true" ng-blur="focus1=false"> -->
+				    <textarea ng-model="delivery.pickuphowtoreach" type="text" placeholder="Example- Behind metro station" limit-Char="200" ng-focus="focus4=true" ng-blur="focus4=false" id="textpickreach" ng-change="auto_grow('textpickreach')" ng-click="makeFocus('textpickreach')"></textarea>
+				  	</label>
+		    	</div>
+		    	</div>
+
+			</div>
+	        </ion-slide>
+
+	        <ion-slide>
+	        <p class="costlabel">Enter Delivery Details</p>
+	    	<div class="list stack-input-place" id="stack-input">
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-home"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus5===true, 'delinvalid' : !delivery.deliveryaddress && formsubmit && !focus5}">
+				    <span class="input-label">Flat, Floor, Building , Locality*</span>
+				    <!-- <input ng-model="delivery.deliveryaddress" type="text" placeholder="Example- 2nd floor, Matrix office" limit-Char="300" ng-focus="focus=true" ng-blur="focus=false"> -->
+				    <textarea ng-model="delivery.deliveryaddress" type="text" placeholder="Example- 2nd floor, Matrix office" limit-Char="300" ng-focus="focus5=true" ng-blur="focus5=false" id="texdeliadd" ng-change="auto_grow('texdeliadd')" ng-click="makeFocus('texdeliadd')">
+				    </textarea>
+				  	</label>
+		    	</div>
+		    	</div>
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-location"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus6===true, 'delinvalid' : !delivery.deliverypincode && formsubmit && !focus6}">
+				    <span class="input-label">Pin code*</span>
+				    <input ng-model="delivery.deliverypincode" type="tel" placeholder="Example- 110030" maxlength="6" required numbers ng-focus="focus6=true" ng-blur="focus6=false" ng-change="checkPincode(2)" id="focus6" ng-click="makeFocus('focus6')">
+				  	</label>
+		    	</div>
+		    	</div>
+
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-person"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus7===true, 'delinvalid' : !delivery.deliveryname && formsubmit && !focus7}">
+				    <span class="input-label">Contact person name*</span>
+				    <input ng-model="delivery.deliveryname" type="text" placeholder="Example- Chandan" limit-Char="40" ng-focus="focus7=true" ng-blur="focus7=false" id="focus7" ng-click="makeFocus('focus7')">
+				  	</label>	
+		    	</div>
+		    	</div>
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-iphone"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus8===true, 'delinvalid' : !delivery.deliveryphone && formsubmit && !focus8}">
+				    <span class="input-label">Contact Detail*</span>
+				    <input ng-model="delivery.deliveryphone" type="tel" ng-focus="focus8=true" ng-blur="focus8=false" required numbers placeholder="Example- 9811XXXXXX / 011268XXXXX" id="focus8" ng-click="makeFocus('focus8')">
+				  	</label>
+		    	</div>
+		    	</div>
+
+		    	<div class="full-input-div">
+		    	<div class="icon-div">
+		    		<i class="icon ion-navigate"></i>
+		    	</div>
+		    	<div class="label-div">
+			   		<label class="item item-input item-stacked-label" ng-class="{'focus':focus9===true, 'delinvalid' : !delivery.deliveryhowtoreach && formsubmit && !focus9}">
+				    <span class="input-label">How to reach? / Landmark*</span>
+				    <!-- <input ng-model="delivery.deliveryhowtoreach" type="text" placeholder="Example- Behind metro station" limit-Char="200" ng-focus="focus1=true" ng-blur="focus1=false"> -->
+				    <textarea ng-model="delivery.deliveryhowtoreach" type="text" placeholder="Example- Behind metro station" limit-Char="200" ng-focus="focus9=true" ng-blur="focus9=false" id="textdelireach" ng-change="auto_grow('textdelireach')" ng-click="makeFocus('textdelireach')"></textarea>
+				  	</label>
+		    	</div>
+		    	</div>
+
+			</div>
+
+			<button type="button" class="searchBtnsub" ng-click="continue();">Continue
+		      	<i class="fa fa-chevron-right pull-right"></i>
+		   	</button>
+
+	        </ion-slide>
+
+<!-- 	        <ion-slide>
+	        	<div style="margin: 10px;" class="delivery-content">
+	    		<div class="row outer-form" style="padding: 10px 10px;">
+	            <p class="costlabel">Select Distance<i style="padding-left: 5px;" class="ion-chevron-down"></i></p>
+
+	            <div class="list" id="insurancebooking" style="margin-bottom: 0;">
+			      	<label class="item item-radio" 
+			      	style="margin: 5px 0px !important;" ng-repeat="item in deliveryData.slabList track by $index">
+			        <input type="radio" name="type" value="{{item.slab}}" ng-model="delivery.distance">
+			        <div class="item-content">{{item.slab}}</div>
+			      	</label>
+		    	</div>
+
+	        	</div>
+	    		</div>
+
+	    		<div class="forexSelect paymentForm1 newTerms">
+		        <input type="checkbox" ng-model="delivery.terms" id="disclaimer">
+		        <label style="margin-bottom: 0px;">
+		          I agree to the purchase terms and conditions.
+		        </label>
+		        <br>
+		        <p class="" style="margin-left: 29px;">
+		          <a ng-click="openTermsModal($event)" style="text-decoration: underline;color: #6fc9ca !important;">Terms of Service and Privacy Policy.</a>
+		        </p>
+		    	</div>
+
+		    	<button type="button" class="searchBtnsub" ng-click="continue();">Continue
+		      	<i class="fa fa-chevron-right pull-right"></i>
+		    	</button>
+
+	        </ion-slide> -->
+
+    	</ion-slide-box>
+
+    </ion-content>
+
+</ion-view>
+
+
+
+
+
+
+    <div style="width: 100%;float: left;height: 60px;">
+ 		<div style="width: 10%;float: left;margin-top: 20px;">
+ 			<i class="icon ion-iphone"></i>
+ 		</div>
+ 		<div style="width: 90%;float: left;">
+	 		<div style="width: 100%;">
+	 			<span>Flat*</span>
+	 		</div>
+	 		<div style="width: 100%;">
+	 			<textarea style="width: 100%;resize: none;position: fixed;height: 30px;" ng-model="delivery.deliveryaddress" type="text" placeholder="Example- 2nd floor, Matrix office" required>
+				</textarea>
+	 		</div>
+ 		</div>
+ 	</div>
