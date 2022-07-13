@@ -13,6 +13,7 @@ import French from "./French";
 import singaporeFly from "./img/singapore.png";
 import malaysiaFly from "./img/malaysia.png";
 
+
 // Icons for App
 // import car from "./img/car.png";
 // import activity from "./img/activity.png";
